@@ -1,3 +1,3 @@
 # workshop-catalog
 
-Vkadimir & Michael
+Vladimir & Michael
