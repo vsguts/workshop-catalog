@@ -1,6 +1,17 @@
 # workshop-catalog
 
-Vladimir & Michael
+# Docker usage
+
+## Start project:
+```
+docker-compose up -d
+``` 
+
+## Stop project
+
+```
+docker-compose down
+```
 
 # Home tasks:
 1. Simple index page
