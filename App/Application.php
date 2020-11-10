@@ -5,6 +5,7 @@ namespace App;
 use App\Http\RequestInterface;
 use App\Http\RouteInterface;
 use App\Http\Router;
+use App\Views\ViewInterface;
 
 class Application
 {
@@ -25,7 +26,9 @@ class Application
             $controller = $this->resolveController($route);
             $action = $this->resolveAction($route, $controller);
 
-            $this->runControllerAction($controller, $action, $request);
+            $result = $this->runControllerAction($controller, $action, $request);
+
+            $this->render($result);
 
         } catch (\Throwable $e) {
             // TODO: logging
@@ -58,6 +61,17 @@ class Application
 
     private function runControllerAction($controller, $action, RequestInterface $request)
     {
-        echo $controller->$action($request);
+        return $controller->$action($request);
+    }
+
+    private function render($result)
+    {
+        if ($result instanceof ViewInterface) {
+            $result->render();
+        } elseif (is_string($result)) {
+            echo $result;
+        } elseif (!empty($result)) {
+            throw new \Exception('Unsupportable controller result');
+        }
     }
 }
