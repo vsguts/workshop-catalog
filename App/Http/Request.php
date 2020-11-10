@@ -13,4 +13,9 @@ class Request implements RequestInterface
     {
         return explode('?', $_SERVER['REQUEST_URI'])[0];
     }
+
+    public function getParams()
+    {
+        return $_GET;
+    }
 }

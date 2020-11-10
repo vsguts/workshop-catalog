@@ -2,21 +2,24 @@
 
 namespace App\Controller;
 
+use App\Database\Query;
 use App\Views\TemplateView;
 
 class PagesController
 {
     public function getList()
     {
-        // echo 'Get List Method indeed';
+        $pages = (new Query())->fetchAll("SELECT * FROM pages");
+
         return new TemplateView('pages/list', [
-            'name' => 'Michael!!',
-            'title' => 'Index page'
+            'pages' => $pages,
+            'title' => 'List of pages'
         ]);
     }
 
-    public function getItem()
+    public function getItem($params)
     {
-        echo 'Get Item method';
+        $result = (new Query())->fetchRow('SELECT * FROM pages WHERE id = :id', $params);
+        pd($result);
     }
 }

@@ -61,7 +61,7 @@ class Application
 
     private function runControllerAction($controller, $action, RequestInterface $request)
     {
-        return $controller->$action($request);
+        return $controller->$action($request->getParams());
     }
 
     private function render($result)
