@@ -24,15 +24,30 @@ class Query
 
     public function fetchAll(string $sql, array $params = [])
     {
-        $pdoQuery = self::$connection->prepare($sql);
-        $pdoQuery->execute($params);
+        $pdoQuery = $this->_exec($sql, $params);
         return $pdoQuery->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function fetchRow(string $sql, array $params = [])
     {
+        $pdoQuery = $this->_exec($sql, $params);
+        return $pdoQuery->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function execute(string $sql, array $params = [])
+    {
+        $this->_exec($sql, $params);
+    }
+
+    public function lastInsertId()
+    {
+        return self::$connection->lastInsertId();
+    }
+
+    private function _exec(string $sql, array $params = [])
+    {
         $pdoQuery = self::$connection->prepare($sql);
         $pdoQuery->execute($params);
-        return $pdoQuery->fetch(\PDO::FETCH_ASSOC);
+        return $pdoQuery;
     }
 }

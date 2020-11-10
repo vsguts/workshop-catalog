@@ -9,4 +9,6 @@ interface RequestInterface
     public function getPath();
 
     public function getParams();
+
+    public function getData();
 }

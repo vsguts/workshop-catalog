@@ -9,6 +9,7 @@ $router = new Router();
 $router->addRoute('GET', '/', IndexController::class, 'index');
 $router->addRoute('GET', '/pages', PagesController::class, 'getList');
 $router->addRoute('GET', '/page', PagesController::class, 'getItem');
+$router->addRoute('POST', '/pages', PagesController::class, 'create');
 
 
 return $router;
