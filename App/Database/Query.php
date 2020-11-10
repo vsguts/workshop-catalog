@@ -44,6 +44,14 @@ class Query
         return self::$connection->lastInsertId();
     }
 
+    public function insert(string $table, array $params = [])
+    {
+        $keys = array_keys($params);
+        $sql = 'INSERT INTO ' . $table . ' (' . implode(', ', $keys) . ') VALUES (:' . implode(', :', $keys) . ')';
+        $this->_exec($sql, $params);
+        return $this->lastInsertId();
+    }
+
     private function _exec(string $sql, array $params = [])
     {
         $pdoQuery = self::$connection->prepare($sql);

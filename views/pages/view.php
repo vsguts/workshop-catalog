@@ -5,8 +5,9 @@
 <br>
 <br>
 
+<pre>
 <?= $page['content'] ?>
-
+</pre>
 
 <br>
 <br>

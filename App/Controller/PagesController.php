@@ -29,8 +29,10 @@ class PagesController
     {
         $query = new Query;
 
-        $query->execute("INSERT INTO pages (title, content) VALUES (:title, :content)", $data['page']);
-        $id = $query->lastInsertId();
+        // $query->execute("INSERT INTO pages (title, content) VALUES (:title, :content)", $data['page']);
+        // $id = $query->lastInsertId();
+
+        $id = $query->insert("pages", $data['page']);
 
         return new Redirect('page?id=' . $id);
     }
