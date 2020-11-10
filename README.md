@@ -14,5 +14,6 @@ docker-compose down
 ```
 
 # Home tasks:
-1. Simple index page
-2. Views concept with example
+1. Implement delete logic
+2. Implement update logic
+3. Create Pull Request with home task to this repo

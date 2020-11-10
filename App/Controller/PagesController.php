@@ -28,6 +28,7 @@ class PagesController
     public function create($params, $data)
     {
         $query = new Query;
+
         $query->execute("INSERT INTO pages (title, content) VALUES (:title, :content)", $data['page']);
         $id = $query->lastInsertId();
 
