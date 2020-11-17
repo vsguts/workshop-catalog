@@ -36,4 +36,17 @@ class PagesController
 
         return new Redirect('page?id=' . $id);
     }
+    public function update($params,$data)
+    {
+        $query = new Query;
+        $query->execute('UPDATE pages SET title=:title,content=:content WHERE id=:id',$data['page']);
+        return new Redirect('/pages');
+    }
+
+    public function delete($params,$data)
+    {
+        $query = new Query;
+        $query->delete("pages", $data['page']);
+        return new Redirect('/pages');
+    }
 }

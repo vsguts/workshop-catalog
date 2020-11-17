@@ -52,6 +52,13 @@ class Query
         return $this->lastInsertId();
     }
 
+    public function delete(string $table, array $params = [])
+    {
+        $keys = array_keys($params);
+        $sql = 'DELETE FROM ' . $table . ' WHERE ' . implode($keys) . '=:' . implode($keys);
+        $this->_exec($sql,$params);
+    }
+
     private function _exec(string $sql, array $params = [])
     {
         $pdoQuery = self::$connection->prepare($sql);
